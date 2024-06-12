@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { HeaderAdminComponent } from './components/header-admin/header-admin.component';
 import { Routes, RouterModule } from '@angular/router';
+import { ProductAddComponent } from './components/product-add/product-add.component';
 
 const routes : Routes =[
   {path:'', component:HomeComponent},
@@ -19,7 +20,8 @@ const routes : Routes =[
     AppComponent,
     HomeComponent,
     ProductListComponent,
-    HeaderAdminComponent
+    HeaderAdminComponent,
+    ProductAddComponent
   ],
   imports: [
     BrowserModule,
