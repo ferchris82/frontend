@@ -1,18 +1,40 @@
-<p>home works!</p>
+<!-- Navigation -->
+<app-header-user></app-header-user>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">id</th>
-      <th scope="col">Nombre</th>
-      <th scope="col">Precio</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let p of products">
-      <th scope="row">{{p.id}}</th>
-      <td>{{p.name}}</td>
-      <td>{{p.price}}</td>
-    </tr>
-  </tbody>
-</table>
+<!-- Page Content -->
+<div class="container">
+  <header class="jumbotron my-4">
+    <h1 class="display-3">Bienvenido a Spring Ecommerce 2024</h1>
+    <p class="lead">Tu tienda de productos en Línea</p>
+  </header>
+
+  <div class="main-content">
+    <div class="section-content section-content-p30">
+      <div class="container-fluid">
+        <div class="row">
+          <div *ngFor = "let p of products" class="col-md-3">
+
+            <div class="product-box">
+              <img src="{{p.urlImage}}">
+              <h2 class="card-text"> {{p.name}} </h2>
+              <div class="price"> {{p.price}}</div>
+              <div class="product-show">
+                <a [routerLink]="['/cart/detailproduct', p.id]" class="primary-btn">Ver producto</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+<!-- Footer -->
+<footer class="py-5 bg-dark">
+  <div class="container">
+    <p class="m-0 text-center text-white">Copyright &copy; Spring eCommerce 2024</p>
+  </div>
+  <!-- /.container -->
+</footer>
