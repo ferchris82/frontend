@@ -11,12 +11,14 @@ import { Routes, RouterModule } from '@angular/router';
 import { ProductAddComponent } from './components/product-add/product-add.component';
 import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
+import { CategoryListComponent } from './components/category/category-list/category-list.component';
 
 const routes : Routes =[
   {path:'', component:HomeComponent},
   {path:'admin/product', component: ProductListComponent},
   {path:'admin/product/addproduct', component: ProductAddComponent},
-  {path:'admin/product/update/:id', component: ProductAddComponent}
+  {path:'admin/product/update/:id', component: ProductAddComponent},
+  {path:'admin/category', component: CategoryListComponent},
 ];
 
 @NgModule({
@@ -25,7 +27,8 @@ const routes : Routes =[
     HomeComponent,
     ProductListComponent,
     HeaderAdminComponent,
-    ProductAddComponent
+    ProductAddComponent,
+    CategoryListComponent
   ],
   imports: [
     BrowserModule,
