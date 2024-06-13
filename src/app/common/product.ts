@@ -5,7 +5,7 @@ export class Product {
         public code:string,
         public description:string,
         public price:number,
-        public urlImage:String,
+        public urlImage:string,
         public image:File,
         public userId:string,
         public categoryId:string
