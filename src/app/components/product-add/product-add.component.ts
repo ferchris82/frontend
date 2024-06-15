@@ -8,7 +8,7 @@ import { CategoryService } from '../../services/category.service';
 @Component({
   selector: 'app-product-add',
   templateUrl: './product-add.component.html',
-  styleUrl: './product-add.component.css'
+  styleUrls: ['./product-add.component.css']
 })
 export class ProductAddComponent implements OnInit{
   id : number = 0;
@@ -19,55 +19,58 @@ export class ProductAddComponent implements OnInit{
   urlImage : string = '';
   userId : string = '1';
   categoryId : string = '3';
+  //user : number = 0;
 
   selectFile! : File;
 
   categories : Category [] = [];
 
-  constructor(private productService : ProductService, private router:Router,
-     private activatedRoute:ActivatedRoute,private toastr: ToastrService,
-     private categoryService:CategoryService){
+  constructor(private productService : ProductService, 
+    private router:Router, 
+    private activatedRoute:ActivatedRoute, 
+    private toastr: ToastrService, 
+    private categoryService:CategoryService){
 
   }
 
   ngOnInit(): void {
     this.getCategories();
     this.getProductById();
+    //this.userId = this.user.toString();
   }
-
   addProduct(){
     const formData = new FormData();
     formData.append('id',this.id.toString());
     formData.append('code', this.code);
     formData.append('name', this.name);
-    formData.append('description', this.description);
+    formData.append('description',this.description);
     formData.append('price', this.price.toString());
-    formData.append('image', this.selectFile);
     formData.append('urlImage', this.urlImage);
     formData.append('userId', this.userId);
     formData.append('categoryId', this.categoryId);
+    formData.append('image', this.selectFile);
+    //console.log(formData.get('id'));
     console.log(formData);
 
     this.productService.createProduct(formData).subscribe(
       data => {
-        console.log(data);
+        console.log(data)
         if(this.id==0){
           this.toastr.success('Producto registrado correctamente', 'Productos')
         } else{
-          this.toastr.success('Producto actualizado correctamente', 'Productos') 
-        }        
+          this.toastr.success('Producto actualizado correctamente', 'Productos')
+        }
+        
         this.router.navigate(['admin/product']);
       }
     );
-    
   }
-
   getProductById(){
     this.activatedRoute.params.subscribe(
       prod => {
         let id = prod['id'];
         if(id){
-          console.log('El valor de la variable id es: '+id);
+          console.log('el valor de la variable id es: '+id);
           this.productService.getProductById(id).subscribe(
             data =>{
               this.id = data.id;
@@ -81,7 +84,9 @@ export class ProductAddComponent implements OnInit{
             }
           );
         }
+
       }
+
     );
   }
 
@@ -94,4 +99,5 @@ export class ProductAddComponent implements OnInit{
       data => this.categories = data
     );
   }
+
 }

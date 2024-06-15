@@ -20,7 +20,8 @@ export class ProductService {
   }
 
   deleteProductById(id:number):Observable<any>{
-    return this.httpClient.delete(this.apiUrl+"/id");
+    return this.httpClient.delete(this.apiUrl+"/"+id);
+  //return this.httpClient.delete(this.apiUrl+"/"+id , {headers: this.headerService.headers});
   }
 
   getProductById(id:number):Observable<Product>{

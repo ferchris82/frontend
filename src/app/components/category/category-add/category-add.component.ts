@@ -13,7 +13,8 @@ export class CategoryAddComponent implements OnInit{
   id: number = 0;
   name: string = '';
   
-  constructor(private categoryService:CategoryService, private toastr:ToastrService, private router:Router, private activatedRoute:ActivatedRoute){}
+  constructor(private categoryService:CategoryService, private toastr:ToastrService,
+     private router:Router, private activatedRoute:ActivatedRoute){}
 
   ngOnInit(): void {
     this.getCategoryById();

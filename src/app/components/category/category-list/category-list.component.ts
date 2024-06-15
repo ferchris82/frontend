@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
 export class CategoryListComponent implements OnInit{
   categories: Category [] = [];
 
-  constructor(private categoryService:CategoryService, private Toastr:ToastrService){}
+  constructor(private categoryService:CategoryService, private toastr:ToastrService){}
 
 
   ngOnInit(): void {
@@ -42,14 +42,13 @@ export class CategoryListComponent implements OnInit{
         this.categoryService.deleteCategoryById(id).subscribe(
           () => this.listCategories()
         );
-        Swal.fire({
-          title: "Categorías",
-          text: "Categoría eliminado correctamente.",
-          icon: "success"
-        });
+        Swal.fire(
+          'Categorías',
+          'Categoría eliminado correctamente.',
+          'success'
+        )
       }
-    });
-    
+    })
 
   }
 
