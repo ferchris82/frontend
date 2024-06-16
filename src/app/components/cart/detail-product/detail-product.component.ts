@@ -52,13 +52,13 @@ export class DetailProductComponent implements OnInit{
     console.log('price product: ', this.price);
     console.log('quantity product: ', this.quantity);
 
-    /* let item = new ItemCart(id, this.name, this.quantity, this.price);
+    let item = new ItemCart(id, this.name, this.quantity, this.price);
 
     this.cartService.addItemCart(item);
     console.log("Total carrito: ")
     console.log(this.cartService.totalCart());
 
-    this.toastr.success('Producto añadido al carrito de compras', 'Carrito compras'); */
+    this.toastr.success('Producto añadido al carrito de compras', 'Carrito compras');
   }
 
 }
