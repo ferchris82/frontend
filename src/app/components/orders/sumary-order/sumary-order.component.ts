@@ -6,6 +6,8 @@ import { OrderProduct } from '../../../common/order-product';
 import { Order } from '../../../common/order';
 import { OrderState } from '../../../common/order-state';
 import { OrderService } from '../../../services/order.service';
+import { PaymentService } from '../../../services/payment.service';
+import { DataPayment } from '../../../common/data-payment';
 
 @Component({
   selector: 'app-sumary-order',
@@ -22,7 +24,8 @@ export class SumaryOrderComponent implements OnInit{
   orderProducts: OrderProduct [] = [];
   userId : number = 1;
 
-  constructor(private cartService:CartService, private userService:UserService, private orderService:OrderService){}
+  constructor(private cartService:CartService, private userService:UserService,
+     private orderService:OrderService, private paymentService:PaymentService){}
 
   ngOnInit(): void {
     this.items = this.cartService.convertToListFromMap();
@@ -43,6 +46,17 @@ export class SumaryOrderComponent implements OnInit{
     this.orderService.createOrder(order).subscribe(
       data => {
         console.log('Orden creada con id: '+ data.id)
+      }
+    );
+
+    let urlPayment;
+    let dataPayment = new DataPayment('PAYPAL', this.totalCart.toString(), 'USD', 'COMPRA');
+
+    this.paymentService.getUrlPaypalPayment(dataPayment).subscribe(
+      data =>{
+        urlPayment = data.url; 
+        console.log('Respuesta exitosa...');
+        window.location.href = urlPayment; 
       }
     );
 
