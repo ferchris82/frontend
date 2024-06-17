@@ -8,6 +8,7 @@ import { OrderState } from '../../../common/order-state';
 import { OrderService } from '../../../services/order.service';
 import { PaymentService } from '../../../services/payment.service';
 import { DataPayment } from '../../../common/data-payment';
+import { SessionStorageService } from '../../../services/session-storage.service';
 
 @Component({
   selector: 'app-sumary-order',
@@ -25,7 +26,8 @@ export class SumaryOrderComponent implements OnInit{
   userId : number = 1;
 
   constructor(private cartService:CartService, private userService:UserService,
-     private orderService:OrderService, private paymentService:PaymentService){}
+     private orderService:OrderService, private paymentService:PaymentService,
+     private sessionStorage:SessionStorageService){}
 
   ngOnInit(): void {
     this.items = this.cartService.convertToListFromMap();
@@ -46,9 +48,10 @@ export class SumaryOrderComponent implements OnInit{
     this.orderService.createOrder(order).subscribe(
       data => {
         console.log('Orden creada con id: '+ data.id)
+        this.sessionStorage.setItem('order', data);
       }
     );
-
+    // Redirección y pago con Paypal
     let urlPayment;
     let dataPayment = new DataPayment('PAYPAL', this.totalCart.toString(), 'USD', 'COMPRA');
 
