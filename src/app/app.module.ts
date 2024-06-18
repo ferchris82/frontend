@@ -18,6 +18,7 @@ import { HeaderUserComponent } from './components/header-user/header-user.compon
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SumaryOrderComponent } from './components/orders/sumary-order/sumary-order.component';
 import { PaymentsSuccessComponent } from './components/payments-success/payments-success.component';
+import { RegistrationComponent } from './components/authentication/registration/registration.component';
 
 const routes : Routes =[
   {path:'', component:HomeComponent},
@@ -29,7 +30,8 @@ const routes : Routes =[
   {path:'admin/category/update/:id', component:CategoryAddComponent}, 
   {path: 'cart/detailproduct/:id', component:DetailProductComponent},
   {path:'cart/sumary', component: SumaryOrderComponent},
-  {path:'payment/success', component: PaymentsSuccessComponent}
+  {path:'payment/success', component: PaymentsSuccessComponent},
+  {path:'user/register', component: RegistrationComponent}
 
 ];
 
@@ -45,7 +47,8 @@ const routes : Routes =[
     DetailProductComponent,
     HeaderUserComponent,
     SumaryOrderComponent,
-    PaymentsSuccessComponent
+    PaymentsSuccessComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
