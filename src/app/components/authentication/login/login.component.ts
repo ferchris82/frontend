@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../../services/authentication.service';
 import { Userdto } from '../../../common/userdto';
 import { SessionStorageService } from '../../../services/session-storage.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -17,7 +18,9 @@ export class LoginComponent implements OnInit {
   }
 
   constructor(private authentication : AuthenticationService, 
-    private sessionStorage: SessionStorageService){
+    private sessionStorage: SessionStorageService,
+    private router:Router  
+    ){
 
   }
 
@@ -26,7 +29,13 @@ export class LoginComponent implements OnInit {
     this.authentication.login(userDto).subscribe(
       token => {
         console.log(token);
+        //this.sessionStorage.removeItem('token);
         this.sessionStorage.setItem('token', token);
+        if (token.type == 'ADMIN') {
+          this.router.navigate(['/admin/product']);
+        }else{
+          this.router.navigate(['/']);
+        }
       }
     );
     console.log(userDto);
