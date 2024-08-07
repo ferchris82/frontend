@@ -2,39 +2,31 @@
 <app-header-user></app-header-user>
 
 <!-- Page Content -->
-<div class="container">
-  <header class="jumbotron my-4">
-    <h1 class="display-3">Bienvenido a Spring Ecommerce 2024</h1>
-    <p class="lead">Tu tienda de productos en Línea</p>
+<div class="container mt-4">
+  <!-- Jumbotron -->
+  <header class="bg-primary text-white rounded-3 p-4 mb-4">
+    <h1 class="display-4">FarmaSena en Línea</h1>
+    <p class="lead">Productos de Farmacias en Línea</p>
   </header>
 
-  <div class="main-content">
-    <div class="section-content section-content-p30">
-      <div class="container-fluid">
-        <div class="row">
-          <div *ngFor = "let p of products" class="col-md-3">
-
-            <div class="product-box">
-              <img src="{{p.urlImage}}">
-              <h2 class="card-text"> {{p.name}} </h2>
-              <div class="price"> {{p.price}}</div>
-              <div class="product-show">
-                <a [routerLink]="['/cart/detailproduct', p.id]" class="primary-btn">Ver producto</a>
-              </div>
-            </div>
-          </div>
+  <!-- Sección de Productos -->
+  <div class="row">
+    <div *ngFor="let p of products" class="col-md-6 col-lg-4 col-xl-3 mb-4">
+      <div class="card h-100 border-0 shadow-sm">
+        <img src="{{p.urlImage}}" class="card-img-top" alt="{{p.name}}">
+        <div class="card-body text-center">
+          <h5 class="card-title">{{p.name}}</h5>
+          <p class="card-text text-success h5">{{p.price | currency:'USD':'symbol'}}</p>
+          <a [routerLink]="['/cart/detailproduct', p.id]" class="btn btn-primary">Ver producto</a>
         </div>
       </div>
     </div>
   </div>
-
-
 </div>
 
 <!-- Footer -->
-<footer class="py-5 bg-dark">
-  <div class="container">
-    <p class="m-0 text-center text-white">Copyright &copy; Spring eCommerce 2024</p>
+<footer class="py-4 bg-dark text-white-50">
+  <div class="container text-center">
+    <small>&copy; Proyecto 2024 Christian Fernando Rojas</small>
   </div>
-  <!-- /.container -->
 </footer>
